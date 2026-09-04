@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { supabase } from "../lib/supabase";
 
 function AddEmployee() {
     const [formData, setFormData] = useState({
         full_name: "",
         cnic: "",
+        email: "",
         block_assign_number: "",
         password: "",
     });
@@ -21,6 +23,8 @@ function AddEmployee() {
         }));
     };
 
+
+    // After submit that create Employee
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -28,13 +32,52 @@ function AddEmployee() {
         setError("");
         setSuccess("");
 
-        // Employee creation will be connected to
-        // Supabase Edge Function in the next step.
+        // Check current logged-in session
+        const {
+            data: { session },
+        } = await supabase.auth.getSession();
 
-        console.log("Employee data:", formData);
+        console.log("CURRENT SESSION:", session);
+
+        const { data, error } = await supabase.functions.invoke(
+            "create-employee",
+            {
+                body: formData,
+            }
+        );
+
+        if (error) {
+            console.log("FUNCTION ERROR:", error);
+
+            const errorBody = await error.context?.json?.();
+
+            console.log("FUNCTION ERROR BODY:", errorBody);
+
+            setError(
+                errorBody?.error || error.message
+            );
+
+            setLoading(false);
+            return;
+        }
+
+        if (data?.error) {
+            setError(data.error);
+            setLoading(false);
+            return;
+        }
+
+        setSuccess("Employee created successfully.");
+
+        setFormData({
+            full_name: "",
+            cnic: "",
+            email: "",
+            block_assign_number: "",
+            password: "",
+        });
 
         setLoading(false);
-        setSuccess("Employee form is working!");
     };
 
     return (
@@ -67,7 +110,18 @@ function AddEmployee() {
                         required
                     />
                 </div>
+                <div>
+                    <label>Email</label>
 
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Email Address "
+                        required
+                    />
+                </div>
                 <div>
                     <label>Block Assignment Number</label>
 

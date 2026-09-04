@@ -1,112 +1,196 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import './App.css'
 import Loader from './components/Loader'
 import AdminDashBoard from './components/AdminDashBoard'
 import { supabase } from './lib/supabase';
 
-function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
-  const handleLogin = async (e) => {
+function AddEmployee() {
+  const [formData, setFormData] = useState({
+    full_name: "",
+    cnic: "",
+    email: "",
+    block_assign_number: "",
+    password: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setLoading(true);
     setError("");
-    // 1. Login with Supabase Auth
+    setSuccess("");
 
-    const { data, error: loginError } = await supabase.auth.signInWithPassword({ email, password })
+    // Get current logged-in admin session
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
-    if (loginError) {
-      setError(loginError.message);
+    console.log("HAS SESSION:", !!session);
+
+    // Make sure admin is logged in
+    if (!session) {
+      setError("You are not logged in.");
       setLoading(false);
       return;
     }
 
+    // Call create-employee Edge Function
+    const { data, error } = await supabase.functions.invoke(
+      "create-employee",
+      {
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      }
+    );
 
-    // 2. Get the user's profile
-    const { data: profile, error: profileError } = await supabase
-      .from("profiles")
-      .select("id, full_name, role, cnic, block_assign_number")
-      .eq("id", data.user.id)
-      .single();
+    // Edge Function error
+    if (error) {
+      console.log("FUNCTION ERROR:", error);
 
-    if (profileError) {
-      await supabase.auth.signOut();
+      const errorBody = await error.context?.json?.();
 
-      setError("Profile not found.");
+      console.log("FUNCTION ERROR BODY:", errorBody);
+
+      setError(
+        errorBody?.error || error.message
+      );
+
       setLoading(false);
       return;
     }
 
-    // 3. Check role
-    if (profile.role !== "admin") {
-      await supabase.auth.signOut();
-
-      setError("Access denied. Admin account required.");
+    // Error returned inside function response
+    if (data?.error) {
+      setError(data.error);
       setLoading(false);
       return;
     }
 
+    // Success
+    setSuccess("Employee created successfully.");
 
-    // 4. Admin successfully logged in
-    setUser(profile);
+    // Clear form
+    setFormData({
+      full_name: "",
+      cnic: "",
+      email: "",
+      block_assign_number: "",
+      password: "",
+    });
+
     setLoading(false);
-  }
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-
-    setUser(null);
-    setEmail("");
-    setPassword("");
   };
-  if (user) return (
-    <AdminDashBoard
-      user={user}
-      onLogout={handleLogout}
-    />
-  )
-  if (loading) return <Loader />
 
-  // Admin Login
   return (
-    <div onSubmit={handleLogin}>
-      <h1>PSER D2D Admin</h1>
+    <div>
+      <h2>Add Employee</h2>
 
-      <form >
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Full Name</label>
+
+          <input
+            type="text"
+            name="full_name"
+            value={formData.full_name}
+            onChange={handleChange}
+            placeholder="Employee full name"
+            required
+          />
+        </div>
+
+        <div>
+          <label>CNIC</label>
+
+          <input
+            type="text"
+            name="cnic"
+            value={formData.cnic}
+            onChange={handleChange}
+            placeholder="Employee CNIC"
+            required
+          />
+        </div>
+
         <div>
           <label>Email</label>
+
           <input
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Admin email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email address"
+            required
+          />
+        </div>
+
+        <div>
+          <label>Block Assignment Number</label>
+
+          <input
+            type="text"
+            name="block_assign_number"
+            value={formData.block_assign_number}
+            onChange={handleChange}
+            placeholder="Block assignment number"
             required
           />
         </div>
 
         <div>
           <label>Password</label>
+
           <input
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Admin password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Employee password"
             required
           />
         </div>
-        {error && <p>{error}</p>}
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
+        {error && (
+          <p>
+            {error}
+          </p>
+        )}
+
+        {success && (
+          <p>
+            {success}
+          </p>
+        )}
+
+        <button
+          type="submit"
+          disabled={loading}
+        >
+          {loading
+            ? "Creating..."
+            : "Create Employee"}
         </button>
       </form>
     </div>
-  )
+  );
 }
 
-export default App
+export default AddEmployee;
