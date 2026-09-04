@@ -1,84 +1,17 @@
-import { useState } from "react";
-import { supabase } from "../lib/supabase";
+import useAddEmployee from "../hooks/useAddEmployee";
 
 function AddEmployee() {
-    const [formData, setFormData] = useState({
-        full_name: "",
-        cnic: "",
-        email: "",
-        block_assign_number: "",
-        password: "",
-    });
+    const {
+        formData,
+        profileImage,
+        loading,
+        error,
+        success,
+        handleChange,
+        handleImageChange,
+        handleSubmit,
+    } = useAddEmployee();
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    };
-
-
-    // After submit that create Employee
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        setLoading(true);
-        setError("");
-        setSuccess("");
-
-        // Check current logged-in session
-        const {
-            data: { session },
-        } = await supabase.auth.getSession();
-
-        console.log("CURRENT SESSION:", session);
-
-        const { data, error } = await supabase.functions.invoke(
-            "create-employee",
-            {
-                body: formData,
-            }
-        );
-
-        if (error) {
-            console.log("FUNCTION ERROR:", error);
-
-            const errorBody = await error.context?.json?.();
-
-            console.log("FUNCTION ERROR BODY:", errorBody);
-
-            setError(
-                errorBody?.error || error.message
-            );
-
-            setLoading(false);
-            return;
-        }
-
-        if (data?.error) {
-            setError(data.error);
-            setLoading(false);
-            return;
-        }
-
-        setSuccess("Employee created successfully.");
-
-        setFormData({
-            full_name: "",
-            cnic: "",
-            email: "",
-            block_assign_number: "",
-            password: "",
-        });
-
-        setLoading(false);
-    };
 
     return (
         <div>
@@ -147,7 +80,21 @@ function AddEmployee() {
                         required
                     />
                 </div>
+                <div>
+                    <label>Profile Image</label>
 
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                    />
+
+                    {profileImage && (
+                        <p>
+                            Selected: {profileImage.name}
+                        </p>
+                    )}
+                </div>
                 {error && <p>{error}</p>}
 
                 {success && <p>{success}</p>}
