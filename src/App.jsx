@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 
 import "./App.css";
+
 import Loader from "./components/Loader";
 import AdminDashBoard from "./components/AdminDashBoard";
-import { supabase } from "./lib/supabase";
+
+import {
+  loginAdmin,
+  logoutAdmin,
+  getCurrentAdmin,
+} from "./services/auth";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -23,40 +29,13 @@ function App() {
     setLoading(true);
     setError("");
 
-    const { data, error: loginError, } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    const {
+      profile,
+      error: loginError,
+    } = await loginAdmin(email, password);
 
     if (loginError) {
-      setError(loginError.message);
-      setLoading(false);
-      return;
-    }
-
-    // Get logged-in user's profile
-    const { data: profile, error: profileError,
-    } = await supabase
-      .from("profiles")
-      .select(
-        "id, full_name, role, cnic, block_assign_number"
-      )
-      .eq("id", data.user.id)
-      .single();
-
-    if (profileError || !profile) {
-      await supabase.auth.signOut();
-
-      setError("Profile not found.");
-      setLoading(false);
-      return;
-    }
-
-    // Only admin can access web admin panel
-    if (profile.role !== "admin") {
-      await supabase.auth.signOut();
-
-      setError("Access denied. Admin account required.");
+      setError(loginError);
       setLoading(false);
       return;
     }
@@ -67,10 +46,9 @@ function App() {
 
   // LOGOUT
   const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
+    const { success } = await logoutAdmin();
 
-    if (error) {
-      console.log("LOGOUT ERROR:", error);
+    if (!success) {
       return;
     }
 
@@ -83,46 +61,19 @@ function App() {
   // CHECK EXISTING SESSION
   useEffect(() => {
     const checkSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+      const { profile } = await getCurrentAdmin();
 
-      // No logged-in user
-      if (!session) {
-        setAuthLoading(false);
-        return;
+      if (profile) {
+        setUser(profile);
       }
 
-      // Get user's profile
-      const { data: profile, error: profileError, } = await supabase
-        .from("profiles")
-        .select(
-          "id, full_name, role, cnic, block_assign_number"
-        )
-        .eq("id", session.user.id)
-        .single();
-
-      // Invalid profile/session
-      if (
-        profileError ||
-        !profile ||
-        profile.role !== "admin"
-      ) {
-        await supabase.auth.signOut();
-
-        setAuthLoading(false);
-        return;
-      }
-
-      // Restore logged-in admin
-      setUser(profile);
       setAuthLoading(false);
     };
 
     checkSession();
   }, []);
 
-  // Loading Screen
+  // LOADING SCREEN
   if (loading || authLoading) {
     return <Loader />;
   }
@@ -137,7 +88,7 @@ function App() {
     );
   }
 
-
+  // LOGIN
   return (
     <div>
       <h1>PSER D2D Admin</h1>
@@ -149,9 +100,7 @@ function App() {
           <input
             type="email"
             value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Admin email"
             required
           />
@@ -163,9 +112,7 @@ function App() {
           <input
             type="password"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Admin password"
             required
           />
@@ -175,8 +122,7 @@ function App() {
 
         <button
           type="submit"
-          disabled={loading}
-        >
+          disabled={loading}  >
           {loading ? "Logging in..." : "Login"}
         </button>
       </form>

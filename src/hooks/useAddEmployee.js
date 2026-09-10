@@ -54,9 +54,7 @@ function useAddEmployee() {
 
         try {
             // CHECK SESSION
-            const {
-                data: { session },
-            } = await supabase.auth.getSession();
+            const { data: { session }, } = await supabase.auth.getSession();
 
             if (!session) {
                 throw new Error("You are not logged in.");

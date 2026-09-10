@@ -9,8 +9,6 @@ export default {
         // Get authenticated admin
         const user = ctx.userClaims;
 
-        console.log("AUTH USER:", user);
-
         if (!user) {
           return Response.json(
             { error: "You must be logged in." },
@@ -26,8 +24,7 @@ export default {
             .eq("id", user.id)
             .single();
 
-        console.log("ADMIN PROFILE:", adminProfile);
-        console.log("ADMIN PROFILE ERROR:", adminError);
+
 
         if (
           adminError ||
@@ -91,11 +88,6 @@ export default {
           });
 
         if (createUserError) {
-          console.error(
-            "CREATE USER ERROR:",
-            createUserError
-          );
-
           return Response.json(
             { error: createUserError.message },
             { status: 400 }
@@ -119,10 +111,6 @@ export default {
 
         // Rollback Auth user if profile fails
         if (profileError) {
-          console.error(
-            "PROFILE ERROR:",
-            profileError
-          );
 
           await ctx.supabaseAdmin.auth.admin.deleteUser(
             employeeId
@@ -149,14 +137,9 @@ export default {
           imagePath =
             `${employeeId}/profile.${fileExtension}`;
 
-          console.log(
-            "UPLOADING IMAGE:",
-            imagePath
-          );
 
-          const {
-            error: uploadError,
-          } = await ctx.supabaseAdmin.storage
+
+          const { error: uploadError, } = await ctx.supabaseAdmin.storage
             .from("employee-images")
             .upload(
               imagePath,
@@ -170,10 +153,6 @@ export default {
             );
 
           if (uploadError) {
-            console.error(
-              "IMAGE UPLOAD ERROR:",
-              uploadError
-            );
 
             // Remove employee if image upload fails
             await ctx.supabaseAdmin
@@ -195,9 +174,7 @@ export default {
           }
 
           // Save image path
-          const {
-            error: imagePathError,
-          } = await ctx.supabaseAdmin
+          const { error: imagePathError, } = await ctx.supabaseAdmin
             .from("profiles")
             .update({
               profile_image_url: imagePath,
@@ -205,11 +182,6 @@ export default {
             .eq("id", employeeId);
 
           if (imagePathError) {
-            console.error(
-              "IMAGE PATH ERROR:",
-              imagePathError
-            );
-
             await ctx.supabaseAdmin.storage
               .from("employee-images")
               .remove([imagePath]);
@@ -250,10 +222,6 @@ export default {
           },
         });
       } catch (error) {
-        console.error(
-          "FUNCTION ERROR:",
-          error
-        );
 
         return Response.json(
           {

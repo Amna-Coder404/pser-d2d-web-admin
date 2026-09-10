@@ -1,4 +1,5 @@
 import AddEmployee from "./AddEmployee";
+import SurveyList from "./SurveyList";
 
 function AdminDashBoard({ user, onLogout }) {
     return (
@@ -16,6 +17,11 @@ function AdminDashBoard({ user, onLogout }) {
             <hr />
 
             <AddEmployee />
+
+            <hr />
+
+            <SurveyList />
+
         </div>
     );
 }
