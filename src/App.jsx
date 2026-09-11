@@ -5,11 +5,10 @@ import "./App.css";
 import Loader from "./components/Loader";
 import AdminDashBoard from "./components/AdminDashBoard";
 
-import {
-  loginAdmin,
-  logoutAdmin,
-  getCurrentAdmin,
-} from "./services/auth";
+import { Button, Input } from "antd";
+
+
+import { loginAdmin, logoutAdmin, getCurrentAdmin, } from "./services/auth";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -20,6 +19,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
 
+
+
   const [error, setError] = useState("");
 
   // LOGIN
@@ -29,10 +30,7 @@ function App() {
     setLoading(true);
     setError("");
 
-    const {
-      profile,
-      error: loginError,
-    } = await loginAdmin(email, password);
+    const { profile, error: loginError, } = await loginAdmin(email, password);
 
     if (loginError) {
       setError(loginError);
@@ -48,9 +46,8 @@ function App() {
   const handleLogout = async () => {
     const { success } = await logoutAdmin();
 
-    if (!success) {
-      return;
-    }
+    if (!success) return;
+
 
     setUser(null);
     setEmail("");
@@ -88,46 +85,58 @@ function App() {
     );
   }
 
+
+
   // LOGIN
   return (
-    <div>
-      <h1>PSER D2D Admin</h1>
-
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Email</label>
-
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Admin email"
-            required
-          />
+    <div className="login-page">
+      <div className="login-card">
+        {/* HEADER */}
+        <div className="login-header">
+          <div className="login-logo">
+            P
+          </div>
+          <h1>PSER D2D</h1>
+          <p>Admin Dashboard</p>
         </div>
 
-        <div>
-          <label>Password</label>
+        {/* LOGIN FORM */}
+        <form className="login-form" onSubmit={handleLogin} >
+          {/* EMAIL */} <div className="form-group">
+            <label htmlFor="admin-email"> Email </label>
+            <Input
+              id="admin-email"
+              type="email"
+              size="large"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter admin email"
+              required />
+          </div>
 
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Admin password"
-            required
-          />
-        </div>
 
-        {error && <p>{error}</p>}
+          {/* PASSWORD */}
+          <div className="form-group">
+            <label htmlFor="admin-password"> Password </label>
+            <Input.Password id="admin-password"
+              size="large"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter password" required />
+          </div>
 
-        <button
-          type="submit"
-          disabled={loading}  >
-          {loading ? "Logging in..." : "Login"}
-        </button>
-      </form>
-    </div>
-  );
+          {/* ERROR */}
+          {error && (<p className="login-error"> {error} </p>)}
+
+          {/* LOGIN BUTTON */}
+          <Button className="login-button" type="primary" htmlType="submit" size="large" block loading={loading} >
+            Login
+          </Button>
+        </form>
+      </div>
+    </div>);
 }
+
+
 
 export default App;

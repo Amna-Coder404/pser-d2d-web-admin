@@ -66,8 +66,7 @@ function useAddEmployee() {
             body.append("full_name", formData.full_name);
             body.append("cnic", formData.cnic);
             body.append("email", formData.email);
-            body.append(
-                "block_assign_number",
+            body.append("block_assign_number",
                 formData.block_assign_number
             );
             body.append("password", formData.password);
@@ -96,11 +95,13 @@ function useAddEmployee() {
             }
 
             // SUCCESS
-            setSuccess(
-                profileImage
-                    ? "Employee and profile image created successfully."
-                    : "Employee created successfully."
+            setSuccess(profileImage
+                ? "Employee and profile image created successfully."
+                : "Employee created successfully."
             );
+            setTimeout(() => {
+                setSuccess("");
+            }, 2000);
 
             // RESET
             setFormData({

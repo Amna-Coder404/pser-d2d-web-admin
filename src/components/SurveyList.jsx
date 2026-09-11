@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
     getAllSurveys,
+    getPublicUrl,
     getSurveyWithEmployeeProfile,
 } from "../services/survey";
 import "../styles/SurveyList.css";
@@ -83,15 +84,24 @@ function SurveyList() {
             {filteredSurveys.map((item) => {
                 const employee = item.employee?.[0];
 
+                const imageUrl = getPublicUrl(employee.profile_image_url)
+                console.log("CHECK", imageUrl)
+
                 return (
                     <div className="survey-card" key={item.id}>
 
                         <div className="employee-info">
-                            <div className="employee-avatar">
-                                {employee?.full_name
-                                    ?.charAt(0)
-                                    ?.toUpperCase()}
-                            </div>
+                            {employee?.profile_image_url ? (
+                                <img
+                                    src={imageUrl}
+                                    alt={employee?.full_name || "Employee"}
+                                    className="employee-avatar"
+                                />
+                            ) : (
+                                <div className="employee-avatar">
+                                    {employee?.full_name?.charAt(0)?.toUpperCase()}
+                                </div>
+                            )}
 
                             <div className="employee-details">
                                 <span>Surveyed by</span>
@@ -106,6 +116,7 @@ function SurveyList() {
                         </div>
 
                         <div className="survey-card-top">
+                            {/* TODO later : ADD a seaction  in form that get image in survey then disply here  */}
                             <div className="person-avatar">
                                 {item.person_name
                                     ?.charAt(0)

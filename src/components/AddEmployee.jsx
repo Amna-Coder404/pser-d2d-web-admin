@@ -1,5 +1,7 @@
 import useAddEmployee from "../hooks/useAddEmployee";
 
+import "../styles/AddEmployee.css"
+
 function AddEmployee() {
     const {
         formData,
@@ -13,98 +15,187 @@ function AddEmployee() {
     } = useAddEmployee();
 
 
+
     return (
-        <div>
-            <h2>Add Employee</h2>
+        <div className="add-employee">
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Full Name</label>
+            {/* Left Content */}
+            <div className="add-employee-intro">
 
-                    <input
-                        type="text"
-                        name="full_name"
-                        value={formData.full_name}
-                        onChange={handleChange}
-                        placeholder="Employee full name"
-                        required
-                    />
+                <div className="intro-image">
+                    <div className="intro-image-overlay">
+                        <span>PSER D2D</span>
+                    </div>
                 </div>
 
-                <div>
-                    <label>CNIC</label>
+                <div className="intro-content">
+                    <span className="intro-label">EMPLOYEE MANAGEMENT</span>
 
-                    <input
-                        type="text"
-                        name="cnic"
-                        value={formData.cnic}
-                        onChange={handleChange}
-                        placeholder="Employee CNIC"
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Email</label>
+                    <h2>Add a new employee</h2>
 
-                    <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Email Address "
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Block Assignment Number</label>
+                    <p>
+                        Create an employee account and assign
+                        their survey block from one simple form.
+                    </p>
 
-                    <input
-                        type="text"
-                        name="block_assign_number"
-                        value={formData.block_assign_number}
-                        onChange={handleChange}
-                        placeholder="Block assignment number"
-                        required
-                    />
+                    <div className="intro-points">
+                        <div>
+                            <span>01</span>
+                            <p>Employee account</p>
+                        </div>
+
+                        <div>
+                            <span>02</span>
+                            <p>Block assignment</p>
+                        </div>
+
+                        <div>
+                            <span>03</span>
+                            <p>Secure access</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div>
-                    <label>Password</label>
+            </div>
 
-                    <input
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="Employee password"
-                        required
-                    />
+
+            {/* Right Form */}
+            <div className="add-employee-form-area">
+
+                <div className="form-top">
+                    <span>Add Employee</span>
+                    <p>Enter employee information below.</p>
                 </div>
-                <div>
-                    <label>Profile Image</label>
 
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
+                <form
+                    className="add-employee-form"
+                    onSubmit={handleSubmit}
+                >
 
-                    {profileImage && (
-                        <p>
-                            Selected: {profileImage.name}
+                    <div className="form-row">
+
+                        <div className="form-group">
+                            <label>Full Name</label>
+
+                            <input
+                                type="text"
+                                name="full_name"
+                                value={formData.full_name}
+                                onChange={handleChange}
+                                placeholder="Employee full name"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>CNIC</label>
+
+                            <input
+                                type="text"
+                                name="cnic"
+                                value={formData.cnic}
+                                onChange={handleChange}
+                                placeholder="Employee CNIC"
+                                required
+                            />
+                        </div>
+
+                    </div>
+
+
+                    <div className="form-row">
+
+                        <div className="form-group">
+                            <label>Email</label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                placeholder="Employee email address"
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label>Block Assignment</label>
+
+                            <input
+                                type="text"
+                                name="block_assign_number"
+                                value={formData.block_assign_number}
+                                onChange={handleChange}
+                                placeholder="Block assignment number"
+                                required
+                            />
+                        </div>
+
+                    </div>
+
+
+                    <div className="form-group">
+                        <label>Password</label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Create employee password"
+                            required
+                        />
+                    </div>
+
+
+                    <div className="form-group profile-image-group">
+                        <label>Profile Image</label>
+
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageChange}
+                        />
+
+                        {profileImage && (
+                            <p className="selected-file">
+                                Selected: {profileImage.name}
+                            </p>
+                        )}
+                    </div>
+
+
+                    {error && (
+                        <p className="form-message error">
+                            {error}
                         </p>
                     )}
-                </div>
-                {error && <p>{error}</p>}
 
-                {success && <p>{success}</p>}
+                    {success && (
+                        <p className="form-message success">
+                            {success}
+                        </p>
+                    )}
 
-                <button type="submit" disabled={loading}>
-                    {loading ? "Creating..." : "Create Employee"}
-                </button>
-            </form>
+
+                    <button
+                        className="create-employee-button"
+                        type="submit"
+                        disabled={loading}
+                    >
+                        {loading
+                            ? "Creating..."
+                            : "Create Employee"}
+                    </button>
+
+                </form>
+
+            </div>
+
         </div>
     );
+
+
 }
 
 export default AddEmployee;

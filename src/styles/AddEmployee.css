@@ -1,0 +1,469 @@
+/* =================================
+   ADD EMPLOYEE
+================================= */
+
+.add-employee {
+    width: 100%;
+    max-width: 1050px;
+    min-height: 520px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+
+    overflow: hidden;
+
+    background: #101010;
+
+    border: 1px solid #252525;
+    border-radius: 16px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =================================
+   LEFT INTRO
+================================= */
+
+.add-employee-intro {
+    position: relative;
+
+    min-height: 520px;
+
+    background: #0b0b0b;
+
+    border-right: 1px solid #242424;
+
+    overflow: hidden;
+}
+
+
+/* Image */
+
+.intro-image {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.05),
+            rgba(0, 0, 0, 0.95)),
+        url("../assets/images/employee-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    opacity: 0.55;
+}
+
+
+/* Image overlay */
+
+.intro-image-overlay {
+    position: absolute;
+
+    top: 25px;
+    left: 25px;
+
+    padding: 7px 11px;
+
+    border: 1px solid #3a3a3a;
+    border-radius: 6px;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    backdrop-filter: blur(6px);
+}
+
+.intro-image-overlay span {
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+}
+
+
+/* =================================
+   INTRO CONTENT
+================================= */
+
+.intro-content {
+    position: absolute;
+
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+
+    z-index: 2;
+}
+
+.intro-label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: #777777;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+}
+
+.intro-content h2 {
+    margin: 0;
+
+    max-width: 300px;
+
+    color: #ffffff;
+
+    font-size: 30px;
+    line-height: 36px;
+
+    letter-spacing: -0.8px;
+}
+
+.intro-content>p {
+    max-width: 330px;
+
+    margin: 12px 0 25px;
+
+    color: #9a9a9a;
+
+    font-size: 13px;
+    line-height: 21px;
+}
+
+
+/* =================================
+   INTRO POINTS
+================================= */
+
+.intro-points {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.intro-points>div {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.intro-points span {
+    color: #555555;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.intro-points p {
+    margin: 0;
+
+    color: #bdbdbd;
+
+    font-size: 11px;
+}
+
+
+/* =================================
+   RIGHT FORM AREA
+================================= */
+
+.add-employee-form-area {
+    padding: 35px 38px;
+
+    background: #111111;
+}
+
+
+/* =================================
+   FORM TOP
+================================= */
+
+.form-top {
+    margin-bottom: 28px;
+}
+
+.form-top span {
+    display: block;
+
+    color: #f5f5f5;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.form-top p {
+    margin: 5px 0 0;
+
+    color: #707070;
+
+    font-size: 12px;
+}
+
+
+/* =================================
+   FORM
+================================= */
+
+.add-employee-form {
+    width: 100%;
+}
+
+
+/* Two columns */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+
+/* =================================
+   FORM GROUP
+================================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 17px;
+}
+
+.form-group label {
+    color: #bdbdbd;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    height: 42px;
+
+    padding: 0 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #292929;
+    border-radius: 7px;
+
+    outline: none;
+
+    background: #0b0b0b;
+    color: #eeeeee;
+
+    font-size: 12px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #555555;
+}
+
+.form-group input:focus {
+    border-color: #505050;
+    background: #0e0e0e;
+}
+
+
+/* =================================
+   FILE INPUT
+================================= */
+
+.profile-image-group input[type="file"] {
+    height: auto;
+
+    padding: 9px;
+
+    color: #888888;
+
+    cursor: pointer;
+}
+
+.profile-image-group input[type="file"]::file-selector-button {
+    margin-right: 10px;
+
+    padding: 6px 10px;
+
+    border: 1px solid #333333;
+    border-radius: 5px;
+
+    background: #191919;
+    color: #d0d0d0;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+
+/* =================================
+   SELECTED FILE
+================================= */
+
+.selected-file {
+    margin: 2px 0 0;
+
+    color: #777777;
+
+    font-size: 10px;
+}
+
+
+/* =================================
+   MESSAGES
+================================= */
+
+.form-message {
+    margin: 5px 0 15px;
+
+    font-size: 12px;
+}
+
+.form-message.error {
+    color: #ef7777;
+}
+
+.form-message.success {
+    color: #6fd38a;
+}
+
+
+/* =================================
+   CREATE BUTTON
+================================= */
+
+.create-employee-button {
+    width: auto;
+    min-width: 155px;
+
+    margin-top: 5px;
+
+    padding: 10px 18px;
+
+    border: 1px solid #ffffff;
+    border-radius: 7px;
+
+    background: #ffffff;
+    color: #080808;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.create-employee-button:hover {
+    background: #dcdcdc;
+    border-color: #dcdcdc;
+}
+
+.create-employee-button:active {
+    transform: translateY(1px);
+}
+
+.create-employee-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 850px) {
+
+    .add-employee {
+        grid-template-columns: 1fr;
+    }
+
+    .add-employee-intro {
+        min-height: 330px;
+
+        border-right: none;
+        border-bottom: 1px solid #242424;
+    }
+
+    .intro-content h2 {
+        font-size: 26px;
+        line-height: 32px;
+    }
+
+    .intro-points {
+        flex-direction: row;
+        gap: 20px;
+    }
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .add-employee {
+        border-radius: 12px;
+    }
+
+    .add-employee-intro {
+        min-height: 300px;
+    }
+
+    .intro-content {
+        left: 20px;
+        right: 20px;
+        bottom: 22px;
+    }
+
+    .intro-content h2 {
+        font-size: 24px;
+        line-height: 30px;
+    }
+
+    .intro-content>p {
+        margin-bottom: 18px;
+    }
+
+    .intro-points {
+        gap: 12px;
+    }
+
+    .intro-points p {
+        font-size: 10px;
+    }
+
+    .add-employee-form-area {
+        padding: 25px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .create-employee-button {
+        width: 100%;
+    }
+}
