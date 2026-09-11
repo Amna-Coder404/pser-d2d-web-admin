@@ -1,6 +1,8 @@
 import useAddEmployee from "../hooks/useAddEmployee";
 
 import "../styles/AddEmployee.css"
+import { motion } from "motion/react";
+
 
 function AddEmployee() {
     const {
@@ -14,9 +16,27 @@ function AddEmployee() {
         handleSubmit,
     } = useAddEmployee();
 
-
+    const inputAnimation = {
+        initial: {
+            opacity: 0,
+            y: 35,
+        },
+        whileInView: {
+            opacity: 1,
+            y: 0,
+        },
+        viewport: {
+            once: false,
+            amount: 0.25,
+        },
+        transition: {
+            duration: 0.5,
+            ease: "easeOut",
+        },
+    };
 
     return (
+
         <div className="add-employee">
 
             {/* Left Content */}
@@ -74,7 +94,10 @@ function AddEmployee() {
 
                     <div className="form-row">
 
-                        <div className="form-group">
+                        <motion.div
+                            className="form-group"
+                            {...inputAnimation}
+                        >
                             <label>Full Name</label>
 
                             <input
@@ -85,9 +108,12 @@ function AddEmployee() {
                                 placeholder="Employee full name"
                                 required
                             />
-                        </div>
+                        </motion.div>
 
-                        <div className="form-group">
+                        <motion.div
+                            className="form-group"
+                            {...inputAnimation}
+                        >
                             <label>CNIC</label>
 
                             <input
@@ -98,14 +124,17 @@ function AddEmployee() {
                                 placeholder="Employee CNIC"
                                 required
                             />
-                        </div>
+                        </motion.div>
 
                     </div>
 
 
                     <div className="form-row">
 
-                        <div className="form-group">
+                        <motion.div
+                            className="form-group"
+                            {...inputAnimation}
+                        >
                             <label>Email</label>
 
                             <input
@@ -116,9 +145,12 @@ function AddEmployee() {
                                 placeholder="Employee email address"
                                 required
                             />
-                        </div>
+                        </motion.div>
 
-                        <div className="form-group">
+                        <motion.div
+                            className="form-group"
+                            {...inputAnimation}
+                        >
                             <label>Block Assignment</label>
 
                             <input
@@ -129,12 +161,15 @@ function AddEmployee() {
                                 placeholder="Block assignment number"
                                 required
                             />
-                        </div>
+                        </motion.div>
 
                     </div>
 
 
-                    <div className="form-group">
+                    <motion.div
+                        className="form-group"
+                        {...inputAnimation}
+                    >
                         <label>Password</label>
 
                         <input
@@ -145,10 +180,13 @@ function AddEmployee() {
                             placeholder="Create employee password"
                             required
                         />
-                    </div>
+                    </motion.div>
 
+                    <motion.div
+                        className="form-group profile-image-group"
+                        {...inputAnimation}
+                    >
 
-                    <div className="form-group profile-image-group">
                         <label>Profile Image</label>
 
                         <input
@@ -162,7 +200,7 @@ function AddEmployee() {
                                 Selected: {profileImage.name}
                             </p>
                         )}
-                    </div>
+                    </motion.div>
 
 
                     {error && (
@@ -190,9 +228,9 @@ function AddEmployee() {
 
                 </form>
 
-            </div>
+            </div >
 
-        </div>
+        </div >
     );
 
 

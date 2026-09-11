@@ -118,11 +118,27 @@ function App() {
           {/* PASSWORD */}
           <div className="form-group">
             <label htmlFor="admin-password"> Password </label>
-            <Input.Password id="admin-password"
+            <Input.Password
+              id="admin-password"
               size="large"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password" required />
+              placeholder="Enter password"
+              required
+              styles={{
+                root: {
+                  background: "#1f1f1f",
+                  borderColor: "#333333",
+                },
+                input: {
+                  background: "#1f1f1f",
+                  color: "#ffffff",
+                },
+                suffix: {
+                  color: "#777777",
+                },
+              }}
+            />
           </div>
 
           {/* ERROR */}

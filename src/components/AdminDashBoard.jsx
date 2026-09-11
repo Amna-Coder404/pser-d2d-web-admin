@@ -1,40 +1,54 @@
 import AddEmployee from "./AddEmployee";
 import EmployeeList from "./EmployeeList";
 import SurveyList from "./SurveyList";
-import { motion } from "motion/react";
 import "../styles/AdminDashBoard.css";
+import { Modal, Button, Avatar } from "antd";
+import { useState } from "react";
+
+import logo from "../assets/images/logo.png";
 
 function AdminDashBoard({ user, onLogout }) {
+    const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+
+    const handleLogout = async () => {
+
+        setShowLogoutConfirm(false);
+        onLogout()
+    }
     return (
         <div className="dashboard">
 
             {/* Header */}
             <header className="dashboard-header">
-
                 <div className="dashboard-brand">
-                    <h1>PSER D2D</h1>
-                    <p>Admin Dashboard</p>
+                    <img
+                        src={logo}
+                        alt="PSER D2D Logo"
+                        className="dashboard-logo"
+                    />
+                    <div className="dashboard-brand">
+                        <h1>PSER D2D</h1>
+                        <p>Admin Dashboard</p>
+                    </div>
                 </div>
-
                 <div className="admin-profile">
 
-                    <div className="admin-avatar">
-                        {user.full_name
-                            ?.charAt(0)
-                            ?.toUpperCase()}
-                    </div>
+                    <Avatar size={44} className="admin-avatar">
+                        {user.full_name?.charAt(0)?.toUpperCase()}
+                    </Avatar>
 
                     <div className="admin-info">
                         <strong>{user.full_name}</strong>
                         <span>{user.role}</span>
                     </div>
 
-                    <button
-                        className="logout-button"
-                        onClick={onLogout}
+
+                    <Button
+                        className="logout-btn"
+                        onClick={() => setShowLogoutConfirm(true)}
                     >
                         Logout
-                    </button>
+                    </Button>
 
                 </div>
 
@@ -71,6 +85,27 @@ function AdminDashBoard({ user, onLogout }) {
 
             </main>
 
+            <Modal
+                title="Confirm Logout"
+                open={showLogoutConfirm}
+                centered
+                width={400}
+                closable={false}
+                maskClosable={false}
+                keyboard={false}
+                destroyOnHidden
+                onCancel={() => setShowLogoutConfirm(false)}
+                onOk={handleLogout}
+                okText="Logout"
+                cancelText="Cancel"
+                okButtonProps={{
+                    danger: true,
+                }}
+            >
+                <p>
+                    Are you sure you want to logout?
+                </p>
+            </Modal>
         </div>
     );
 }

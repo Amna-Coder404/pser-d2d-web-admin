@@ -1,578 +1,239 @@
-/* =========================================
-   EMPLOYEE SECTION
-========================================= */
+ /* EMPLOYEESECTION */
+ .employee-section {
+     width: 100%;
+     padding: 10px 0 5px;
+     color: #f5f5f5;
+ }
+
+
+ /* HEADER */
+
+ .employee-header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 20px;
+     margin-bottom: 28px;
+ }
+
+ .employee-header h2 {
+     margin: 0;
+     color: #f5f5f5;
+     font-size: 25px;
+     font-weight: 700;
+     line-height: 32px;
+     letter-spacing: -0.4px;
+ }
+
+ .employee-header p {
+     margin: 5px 0 0;
+     color: #777;
+     font-size: 13px;
+     line-height: 20px;
+ }
+
+ .employee-total {
+     padding: 7px 13px;
+     border: 1px solid #292929;
+     border-radius: 7px;
+     background: #151515;
+     color: #cfcfcf;
+     font-size: 12px;
+     font-weight: 600;
+     white-space: nowrap;
+ }
+
+
+ /* GROUP  */
+ .employee-group {
+     margin-bottom: 30px;
+ }
+
+ .employee-group:last-child {
+     margin-bottom: 0;
+ }
+
+
+ /* GROUPHEADER  */
+ .group-header {
+     display: flex;
+     align-items: center;
+
+     gap: 9px;
+     margin-bottom: 12px;
+ }
+
+ .group-header h3 {
+     display: flex;
+     align-items: center;
+     gap: 8px;
+     margin: 0;
+     color: #dedede;
+     font-size: 15px;
+     font-weight: 600;
+     line-height: 22px;
+ }
+
+
+ /* STATUSDOTS  */
+ .green-dot,
+ .red-dot {
+     width: 7px;
+     height: 7px;
+     flex-shrink: 0;
+     border-radius: 50%;
+ }
+
+ .green-dot {
+     background: #22c55e;
+     box-shadow: 0 0 7px rgba(34, 197, 94, 0.45);
+ }
+
+ .red-dot {
+     background: #ef4444;
+     box-shadow: 0 0 7px rgba(239, 68, 68, 0.35);
+ }
+
+
+ /* GROUPCOUNT */
+ .group-count {
+     min-width: 23px;
+     height: 23px;
+     padding: 0 6px;
+     display: inline-flex;
+     align-items: center;
+     justify-content: center;
 
-.employee-section {
-    width: 100%;
-    padding: 10px 0 5px;
-    color: #f5f5f5;
-}
+     box-sizing: border-box;
+     border: 1px solid #292929;
+     border-radius: 20px;
+     background: #171717;
+     color: #999;
 
+     font-size: 11px;
+     font-weight: 700;
+ }
 
-/* =========================================
-   HEADER
-========================================= */
 
-.employee-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+ /* EMPLOYEELIST  */
+ .employee-list {
+     display: flex;
+     flex-direction: column;
 
-    gap: 20px;
-    margin-bottom: 28px;
-}
+     gap: 8px;
+ }
 
-.employee-header h2 {
-    margin: 0;
+
+ .employee-card:hover {
+     border-color: #383838;
+     background: #141414;
+ }
 
-    color: #f5f5f5;
+ .employee-card.expanded {
+     border-color: #404040;
+ }
 
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 32px;
 
-    letter-spacing: -0.4px;
-}
-
-.employee-header p {
-    margin: 5px 0 0;
-
-    color: #777;
-
-    font-size: 13px;
-    line-height: 20px;
-}
-
-.employee-total {
-    padding: 7px 13px;
-
-    border: 1px solid #292929;
-    border-radius: 7px;
-
-    background: #151515;
-    color: #cfcfcf;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-
-/* =========================================
-   GROUP
-========================================= */
-
-.employee-group {
-    margin-bottom: 30px;
-}
-
-.employee-group:last-child {
-    margin-bottom: 0;
-}
-
-
-/* =========================================
-   GROUP HEADER
-========================================= */
-
-.group-header {
-    display: flex;
-    align-items: center;
-
-    gap: 9px;
-    margin-bottom: 12px;
-}
-
-.group-header h3 {
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-    margin: 0;
-
-    color: #dedede;
-
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 22px;
-}
-
-
-/* =========================================
-   STATUS DOTS
-========================================= */
-
-.green-dot,
-.red-dot {
-    width: 7px;
-    height: 7px;
-
-    flex-shrink: 0;
-
-    border-radius: 50%;
-}
-
-.green-dot {
-    background: #22c55e;
-    box-shadow: 0 0 7px rgba(34, 197, 94, 0.45);
-}
-
-.red-dot {
-    background: #ef4444;
-    box-shadow: 0 0 7px rgba(239, 68, 68, 0.35);
-}
-
-
-/* =========================================
-   GROUP COUNT
-========================================= */
-
-.group-count {
-    min-width: 23px;
-    height: 23px;
-
-    padding: 0 6px;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    box-sizing: border-box;
-
-    border: 1px solid #292929;
-    border-radius: 20px;
-
-    background: #171717;
-    color: #999;
-
-    font-size: 11px;
-    font-weight: 700;
-}
-
-
-/* =========================================
-   EMPLOYEE LIST
-========================================= */
-
-.employee-list {
-    display: flex;
-    flex-direction: column;
-
-    gap: 8px;
-}
-
-
-/* =========================================
-   EMPLOYEE CARD
-========================================= */
-
-.employee-card {
-    width: 100%;
-
-    overflow: hidden;
-
-    box-sizing: border-box;
-
-    border: 1px solid #262626;
-    border-radius: 10px;
-
-    background: #111111;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease;
-}
-
-.employee-card:hover {
-    border-color: #383838;
-    background: #141414;
-}
-
-.employee-card.expanded {
-    border-color: #404040;
-}
-
-
-/* =========================================
-   EMPLOYEE ROW
-========================================= */
-
-.employee-row {
-    min-height: 66px;
-
-    padding: 10px 14px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    gap: 15px;
-
-    box-sizing: border-box;
-}
-
-
-/* =========================================
-   EMPLOYEE SUMMARY
-========================================= */
-
-.employee-summary {
-    min-width: 0;
-
-    display: flex;
-    align-items: center;
-
-    gap: 12px;
-
-    cursor: pointer;
-}
-
-
-/* =========================================
-   EMPLOYEE AVATAR
-========================================= */
-
-.employee-avatar {
-    width: 42px;
-    height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex-shrink: 0;
-
-    border: 1px solid #303030;
-    border-radius: 50%;
-
-    background: #1b1b1b;
-    color: #e5e5e5;
-
-    font-size: 15px;
-    font-weight: 700;
-}
-
-
-/* =========================================
-   EMPLOYEE NAME
-========================================= */
-
-.employee-name {
-    min-width: 0;
-}
-
-.employee-name h3 {
-    margin: 0 0 4px;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    color: #eeeeee;
-
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-}
-
-
-/* =========================================
-   STATUS
-========================================= */
-
-.status {
-    display: inline-flex;
-    align-items: center;
-
-    gap: 5px;
-
-    font-size: 10px;
-    font-weight: 600;
-}
-
-.status-dot {
-    width: 5px;
-    height: 5px;
-
-    border-radius: 50%;
-}
-
-.status.active {
-    color: #4ade80;
-}
-
-.status.active .status-dot {
-    background: #22c55e;
-}
-
-.status.inactive {
-    color: #f87171;
-}
-
-.status.inactive .status-dot {
-    background: #ef4444;
-}
-
-
-/* =========================================
-   ACTIONS
-========================================= */
-
-.employee-actions {
-    display: flex;
-    align-items: center;
-
-    gap: 7px;
-
-    flex-shrink: 0;
-}
-
-.employee-actions button {
-    cursor: pointer;
-}
-
-
-/* =========================================
-   ACTIVATE / DEACTIVATE
-========================================= */
-
-.activate-btn,
-.deactivate-btn {
-    padding: 7px 11px;
-
-    border-radius: 6px;
-
-    font-size: 11px;
-    font-weight: 600;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
-}
-
-.activate-btn {
-    border: 1px solid #164e2b;
-
-    background: #102619;
-    color: #4ade80;
-}
-
-.activate-btn:hover {
-    background: #15351f;
-    border-color: #236b3c;
-}
-
-.deactivate-btn {
-    border: 1px solid #512020;
-
-    background: #281313;
-    color: #f87171;
-}
-
-.deactivate-btn:hover {
-    background: #361818;
-    border-color: #713030;
-}
-
-.activate-btn:disabled,
-.deactivate-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-
-/* =========================================
-   EXPAND BUTTON
-========================================= */
-
-.expand-btn {
-    width: 30px;
-    height: 30px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 0;
-
-    border: 1px solid #2b2b2b;
-    border-radius: 6px;
-
-    background: #161616;
-    color: #888;
-
-    font-size: 14px;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease;
-}
-
-.expand-btn:hover {
-    background: #202020;
-    border-color: #3a3a3a;
-    color: #ddd;
-}
-
-
-/* =========================================
-   DETAILS
-========================================= */
-
-.employee-details {
-    padding: 15px 20px;
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 18px;
-
-    box-sizing: border-box;
-
-    border-top: 1px solid #252525;
-
-    background: #0d0d0d;
-}
-
-
-/* =========================================
-   DETAIL
-========================================= */
-
-.detail {
-    display: flex;
-    flex-direction: column;
-
-    gap: 4px;
-
-    min-width: 0;
-}
-
-.detail span {
-    color: #666;
-
-    font-size: 9px;
-    font-weight: 600;
-
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.detail strong {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    color: #cfcfcf;
-
-    font-size: 12px;
-    font-weight: 500;
-}
-
-
-/* =========================================
-   EMPTY STATE
-========================================= */
-
-.empty {
-    margin: 0;
-
-    padding: 20px;
-
-    border: 1px dashed #292929;
-    border-radius: 8px;
-
-    background: #0f0f0f;
-
-    color: #666;
-
-    text-align: center;
-
-    font-size: 12px;
-}
-
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media (max-width: 700px) {
-
-    .employee-header {
-        align-items: flex-start;
-    }
-
-    .employee-header h2 {
-        font-size: 22px;
-    }
-
-    .employee-details {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-
-@media (max-width: 550px) {
-
-    .employee-header {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .employee-total {
-        align-self: flex-start;
-    }
-
-    .employee-row {
-        padding: 10px;
-    }
-
-    .employee-summary {
-        gap: 9px;
-    }
-
-    .employee-avatar {
-        width: 38px;
-        height: 38px;
-    }
-
-    .employee-actions {
-        gap: 5px;
-    }
-
-    .activate-btn,
-    .deactivate-btn {
-        padding: 6px 8px;
-        font-size: 10px;
-    }
-
-    .expand-btn {
-        width: 28px;
-        height: 28px;
-    }
-}
-
-
-@media (max-width: 430px) {
-
-    .employee-details {
-        grid-template-columns: 1fr;
-        gap: 12px;
-    }
-
-    .employee-name h3 {
-        max-width: 120px;
-    }
-
-    .employee-actions {
-        flex-shrink: 0;
-    }
-
-    .activate-btn,
-    .deactivate-btn {
-        padding: 6px 7px;
-    }
-}
+ /* EMPLOYEEROW  */
+ .employee-row {
+     min-height: 66px;
+     padding: 10px 14px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     gap: 15px;
+     box-sizing: border-box;
+ }
+
+
+ /* EMPLOYEESUMMARY  */
+ .employee-summary {
+     min-width: 0;
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     cursor: pointer;
+ }
+
+
+ /* EMPLOYEEAVATAR */
+ .employee-avatar {
+     width: 42px;
+     height: 42px;
+
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-shrink: 0;
+     border: 1px solid #303030;
+     border-radius: 50%;
+     background: #1b1b1b;
+     color: #e5e5e5;
+     font-size: 15px;
+     font-weight: 700;
+ }
+
+
+
+
+
+ /* RESPONSIVE */
+ @media (max-width: 700px) {
+
+     .employee-header {
+         align-items: flex-start;
+     }
+
+     .employee-header h2 {
+         font-size: 22px;
+     }
+
+     .employee-details {
+         grid-template-columns: 1fr 1fr;
+     }
+ }
+
+
+ @media (max-width: 550px) {
+
+     .employee-header {
+         flex-direction: column;
+         gap: 12px;
+     }
+
+     .employee-actions {
+         gap: 5px;
+     }
+
+     .activate-btn,
+     .deactivate-btn {
+         padding: 6px 8px;
+         font-size: 10px;
+     }
+
+     .expand-btn {
+         width: 28px;
+         height: 28px;
+     }
+ }
+
+ @media (max-width: 430px) {
+
+     .employee-details {
+         grid-template-columns: 1fr;
+         gap: 12px;
+     }
+
+     .employee-name h3 {
+         max-width: 120px;
+     }
+
+     .employee-actions {
+         flex-shrink: 0;
+     }
+
+     .activate-btn,
+     .deactivate-btn {
+         padding: 6px 7px;
+     }
+ }

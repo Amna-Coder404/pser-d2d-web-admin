@@ -14,8 +14,9 @@
 }
 
 
-/*
-   DASHBOARD */
+/* =========================
+   DASHBOARD
+========================= */
 
 .dashboard {
     min-height: 100vh;
@@ -26,12 +27,13 @@
 }
 
 
-/*
-   HEADER */
+/* =========================
+   HEADER
+========================= */
 
 .dashboard-header {
     width: 100%;
-    height: 72px;
+    min-height: 74px;
 
     padding: 0 35px;
     box-sizing: border-box;
@@ -40,15 +42,50 @@
     align-items: center;
     justify-content: space-between;
 
-    background: #0d0d0d;
+    background: #0c0c0c;
     border-bottom: 1px solid var(--border);
+
+    position: relative;
+    z-index: 10;
 }
 
 
-/*
-   BRAND */
+/* =========================
+   BRAND
+========================= */
 
 .dashboard-brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    min-width: 0;
+}
+
+.dashboard-logo {
+    width: 43px;
+    height: 43px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: #151515;
+
+    border: 1px solid #2b2b2b;
+
+    padding: 3px;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        0 0 0 3px #0c0c0c,
+        0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.dashboard-brand>div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,23 +98,29 @@
 
     font-size: 20px;
     font-weight: 700;
+
     line-height: 24px;
 
-    letter-spacing: -0.3px;
+    letter-spacing: -0.4px;
 }
 
 .dashboard-brand p {
-    margin: 3px 0 0;
+    margin: 2px 0 0;
 
     color: #777777;
 
-    font-size: 12px;
+    font-size: 11px;
+    font-weight: 500;
+
     line-height: 16px;
+
+    letter-spacing: 0.1px;
 }
 
 
-/*
-   ADMIN PROFILE */
+/* =========================
+   ADMIN PROFILE
+========================= */
 
 .admin-profile {
     display: flex;
@@ -89,8 +132,9 @@
 }
 
 
-/*
-   AVATAR */
+/* =========================
+   AVATAR
+========================= */
 
 .admin-avatar {
     width: 38px;
@@ -111,12 +155,13 @@
     font-size: 14px;
     font-weight: 700;
 
-    box-shadow: 0 0 0 3px #0d0d0d;
+    box-shadow: 0 0 0 3px #0c0c0c;
 }
 
 
-/*
-   ADMIN INFO */
+/* =========================
+   ADMIN INFO
+========================= */
 
 .admin-info {
     display: flex;
@@ -132,6 +177,7 @@
 
     font-size: 13px;
     font-weight: 600;
+
     line-height: 17px;
 
     white-space: nowrap;
@@ -141,47 +187,57 @@
     color: #777777;
 
     font-size: 11px;
+
     line-height: 15px;
 
     text-transform: capitalize;
 }
 
 
-/*
-   LOGOUT */
+/* =========================
+   LOGOUT BUTTON
+========================= */
 
-.logout-button {
-    margin-left: 10px;
+.logout-btn {
+    height: 34px;
 
-    padding: 7px 13px;
+    padding: 0 14px;
 
-    border: 1px solid #303030;
-    border-radius: 7px;
+    background: #1b1b1b !important;
 
-    background: #151515;
-    color: #d4d4d4;
+    border: 1px solid #333333 !important;
+
+    border-radius: 8px !important;
+
+    color: #ffffff !important;
 
     font-size: 12px;
     font-weight: 600;
 
     cursor: pointer;
 
-    transition: all 0.2s ease;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
-.logout-button:hover {
-    background: #202020;
-    border-color: #444444;
-    color: #ffffff;
+.logout-btn:hover {
+    background: #242424 !important;
+
+    border-color: #444444 !important;
+
+    color: #ffffff !important;
 }
 
-.logout-button:active {
-    transform: translateY(1px);
+.logout-btn:active {
+    transform: scale(0.97);
 }
 
 
-/*
-   MAIN CONTENT */
+/* =========================
+   MAIN CONTENT
+========================= */
 
 .dashboard-content {
     width: 100%;
@@ -189,14 +245,15 @@
 
     margin: 0 auto;
 
-    padding: 35px 25px 70px;
+    padding: 38px 25px 70px;
 
     box-sizing: border-box;
 }
 
 
-/*
-   DASHBOARD SECTIONS */
+/* =========================
+   DASHBOARD SECTIONS
+========================= */
 
 .dashboard-section {
     width: 100%;
@@ -204,16 +261,14 @@
     margin-bottom: 70px;
 }
 
-
-/* Last section */
-
 .dashboard-section:last-child {
     margin-bottom: 0;
 }
 
 
-/*
-   SECTION HEADING */
+/* =========================
+   SECTION HEADING
+========================= */
 
 .section-heading {
     margin-bottom: 28px;
@@ -229,9 +284,10 @@
 
     font-size: 23px;
     font-weight: 700;
+
     line-height: 30px;
 
-    letter-spacing: -0.3px;
+    letter-spacing: -0.4px;
 }
 
 .section-heading p {
@@ -240,25 +296,27 @@
     color: #777777;
 
     font-size: 13px;
+
     line-height: 20px;
 }
 
 
-/*
-   CHILD COMPONENT SUPPORT */
+/* =========================
+   CHILD COMPONENT SUPPORT
+========================= */
 
 .dashboard-content>* {
     width: 100%;
 }
 
 
-/*
-   MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 700px) {
 
     .dashboard-header {
-        height: auto;
         min-height: 72px;
 
         padding: 14px 20px;
@@ -294,15 +352,12 @@
     .admin-info {
         min-width: 70px;
     }
-
-    .logout-button {
-        margin-left: 3px;
-        padding: 7px 11px;
-    }
 }
 
 
-/*  SMALL MOBILE */
+/* =========================
+   SMALL MOBILE
+========================= */
 
 @media (max-width: 480px) {
 
@@ -310,12 +365,25 @@
         padding: 13px 15px;
     }
 
+    .dashboard-logo {
+        width: 39px;
+        height: 39px;
+
+        border-radius: 8px;
+    }
+
+    .dashboard-brand {
+        gap: 10px;
+    }
+
     .dashboard-brand h1 {
         font-size: 18px;
+        line-height: 22px;
     }
 
     .dashboard-brand p {
-        font-size: 11px;
+        font-size: 10px;
+        line-height: 14px;
     }
 
     .admin-info {
@@ -329,8 +397,10 @@
         font-size: 13px;
     }
 
-    .logout-button {
-        padding: 6px 10px;
+    .logout-btn {
+        height: 32px;
+
+        padding: 0 11px;
 
         font-size: 11px;
     }

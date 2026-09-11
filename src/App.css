@@ -18,6 +18,15 @@
   box-sizing: border-box;
 }
 
+.ant-input-password-icon {
+  color: #777 !important;
+}
+
+.ant-input-password-icon:hover {
+  color: #ffffff !important;
+  background: #333333 !important;
+}
+
 body {
   margin: 0;
   font-family:

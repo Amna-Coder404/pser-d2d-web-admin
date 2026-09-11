@@ -1,6 +1,4 @@
-/* =================================
-   ADD EMPLOYEE
-================================= */
+/* ADD EMPLOYEE */
 
 .add-employee {
     width: 100%;
@@ -24,9 +22,7 @@
 }
 
 
-/* =================================
-   LEFT INTRO
-================================= */
+/* LEFT INTRO */
 
 .add-employee-intro {
     position: relative;
@@ -52,7 +48,7 @@
         linear-gradient(to bottom,
             rgba(0, 0, 0, 0.05),
             rgba(0, 0, 0, 0.95)),
-        url("../assets/images/employee-bg.jpg");
+        url("../assets/images/employee-bg.jpeg");
 
     background-size: cover;
     background-position: center;
@@ -89,9 +85,7 @@
 }
 
 
-/* =================================
-   INTRO CONTENT
-================================= */
+/* INTRO CONTENT */
 
 .intro-content {
     position: absolute;
@@ -141,9 +135,7 @@
 }
 
 
-/* =================================
-   INTRO POINTS
-================================= */
+/* INTRO POINTS */
 
 .intro-points {
     display: flex;
@@ -175,9 +167,7 @@
 }
 
 
-/* =================================
-   RIGHT FORM AREA
-================================= */
+/* RIGHT FORM AREA */
 
 .add-employee-form-area {
     padding: 35px 38px;
@@ -186,9 +176,7 @@
 }
 
 
-/* =================================
-   FORM TOP
-================================= */
+/* FORM TOP */
 
 .form-top {
     margin-bottom: 28px;
@@ -196,25 +184,19 @@
 
 .form-top span {
     display: block;
-
     color: #f5f5f5;
-
     font-size: 19px;
     font-weight: 700;
 }
 
 .form-top p {
     margin: 5px 0 0;
-
     color: #707070;
-
     font-size: 12px;
 }
 
 
-/* =================================
-   FORM
-================================= */
+/* FORM */
 
 .add-employee-form {
     width: 100%;
@@ -231,9 +213,7 @@
 }
 
 
-/* =================================
-   FORM GROUP
-================================= */
+/* FORM GROUP */
 
 .form-group {
     display: flex;
@@ -284,9 +264,7 @@
 }
 
 
-/* =================================
-   FILE INPUT
-================================= */
+/* FILE INPUT */
 
 .profile-image-group input[type="file"] {
     height: auto;
@@ -315,9 +293,7 @@
 }
 
 
-/* =================================
-   SELECTED FILE
-================================= */
+/* SELECTED FILE */
 
 .selected-file {
     margin: 2px 0 0;
@@ -328,9 +304,7 @@
 }
 
 
-/* =================================
-   MESSAGES
-================================= */
+/* MESSAGES */
 
 .form-message {
     margin: 5px 0 15px;
@@ -347,9 +321,7 @@
 }
 
 
-/* =================================
-   CREATE BUTTON
-================================= */
+/* CREATE BUTTON */
 
 .create-employee-button {
     width: auto;
@@ -388,9 +360,7 @@
 }
 
 
-/* =================================
-   TABLET
-================================= */
+/* TABLET */
 
 @media (max-width: 850px) {
 
@@ -417,9 +387,7 @@
 }
 
 
-/* =================================
-   MOBILE
-================================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
 

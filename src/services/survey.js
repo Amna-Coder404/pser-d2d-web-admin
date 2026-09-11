@@ -104,6 +104,6 @@ export const getPublicUrl = (imagePath) => {
         .storage
         .from("employee-images")
         .getPublicUrl(imagePath || "");
-    console.log("PUBLIC URL:", data.publicUrl);
+
     return data.publicUrl;
 }
