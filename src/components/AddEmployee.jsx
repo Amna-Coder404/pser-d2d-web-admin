@@ -2,9 +2,13 @@ import useAddEmployee from "../hooks/useAddEmployee";
 
 import "../styles/AddEmployee.css"
 import { motion } from "motion/react";
-
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 function AddEmployee() {
+
+    const [showPassword, setShowPassword] = useState(false);
+
     const {
         formData,
         profileImage,
@@ -14,6 +18,8 @@ function AddEmployee() {
         handleChange,
         handleImageChange,
         handleSubmit,
+
+
     } = useAddEmployee();
 
     const inputAnimation = {
@@ -87,10 +93,7 @@ function AddEmployee() {
                     <p>Enter employee information below.</p>
                 </div>
 
-                <form
-                    className="add-employee-form"
-                    onSubmit={handleSubmit}
-                >
+                <form className="add-employee-form" onSubmit={handleSubmit}  >
 
                     <div className="form-row">
 
@@ -115,13 +118,14 @@ function AddEmployee() {
                             {...inputAnimation}
                         >
                             <label>CNIC</label>
-
                             <input
                                 type="text"
                                 name="cnic"
                                 value={formData.cnic}
                                 onChange={handleChange}
-                                placeholder="Employee CNIC"
+                                placeholder="13-digit CNIC or 35202-1234567-1"
+                                maxLength={15} // 15 hs lay ky hs koi user " - "ka use bhi karta hy 
+                                inputMode="text"
                                 required
                             />
                         </motion.div>
@@ -172,14 +176,33 @@ function AddEmployee() {
                     >
                         <label>Password</label>
 
-                        <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
-                            placeholder="Create employee password"
-                            required
-                        />
+                        <div className="password-input-wrapper">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                name="password"
+                                value={formData.password}
+                                onChange={handleChange}
+                                placeholder="Create employee password"
+                                required
+                            />
+
+                            <button
+                                type="button"
+                                className="password-toggle"
+                                onClick={() => setShowPassword(!showPassword)}
+                                aria-label={
+                                    showPassword
+                                        ? "Hide password"
+                                        : "Show password"
+                                }
+                            >
+                                {showPassword ? (
+                                    <EyeOff size={20} />
+                                ) : (
+                                    <Eye size={20} />
+                                )}
+                            </button>
+                        </div>
                     </motion.div>
 
                     <motion.div
@@ -193,13 +216,23 @@ function AddEmployee() {
                             type="file"
                             accept="image/*"
                             onChange={handleImageChange}
+
+                            required
                         />
 
+
                         {profileImage && (
-                            <p className="selected-file">
-                                Selected: {profileImage.name}
-                            </p>
+                            <div className="selected-image-preview">
+                                <img
+                                    src={URL.createObjectURL(profileImage)}
+                                    alt="Selected profile"
+                                />
+
+
+                            </div>
                         )}
+
+
                     </motion.div>
 
 

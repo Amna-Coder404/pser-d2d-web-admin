@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Pencil, Check, X } from "lucide-react";
+import useAddEmployee from "../hooks/useAddEmployee";
 import "../styles/EmployeeCard.css"
 import { getPublicUrl } from "../services/survey";
 import { Button } from "antd";
@@ -6,9 +8,47 @@ import { Button } from "antd";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 
-function EmployeeCard({ employee, onToggleStatus, updating }) {
+function EmployeeCard({ employee, onToggleStatus, updating, onEmployeeUpdate }) {
     const [expanded, setExpanded] = useState(false);
     const imageUrl = getPublicUrl(employee.profile_image_url)
+    const [edit, setEdit] = useState(false);
+
+
+    const {
+        edifFormData,
+        handleEditChange,
+        handleEditSubmit,
+        setEditFormData,
+        loading: editLoading,
+    } = useAddEmployee();
+
+
+    const handleEditClick = () => {
+        console.log("OPEN")
+        setEditFormData({
+            block_assign_number: employee.block_assign_number || "",
+        });
+
+        setEdit(true);
+    };
+    const handleSave = async () => {
+        const updatedEmployee = await handleEditSubmit(
+            employee.id,
+            edifFormData
+        );
+
+        if (updatedEmployee) {
+            onEmployeeUpdate(updatedEmployee);
+            setEdit(false);
+        }
+    };
+
+    const handleCancel = () => {
+        setEdit(false);
+        setEditFormData({
+            block_assign_number: employee.block_assign_number || "",
+        });
+    };
 
     return (
         <div className={`employee-card ${expanded ? "expanded" : ""}`}>
@@ -109,10 +149,48 @@ function EmployeeCard({ employee, onToggleStatus, updating }) {
                         </div>
 
                         <div className="detail">
-                            <span>Block Assign</span>
-                            <strong>
-                                {employee.block_assign_number || "N/A"}
-                            </strong>
+                            {edit ? (
+                                <div className="block-edit">
+                                    <input
+                                        type="text"
+                                        name="block_assign_number"
+                                        value={
+                                            edifFormData.block_assign_number
+                                        }
+                                        onChange={handleEditChange}
+                                        autoFocus
+                                    />
+
+                                    <button
+                                        className="field-save-btn"
+                                        onClick={handleSave}
+                                        disabled={editLoading}
+                                    >
+                                        <Check size={15} />
+                                    </button>
+
+                                    <button
+                                        className="field-cancel-btn"
+                                        onClick={handleCancel}
+                                        disabled={editLoading}
+                                    >
+                                        <X size={15} />
+                                    </button>
+                                </div>
+                            ) : (
+                                <div className="field-value">
+                                    <strong>
+                                        {employee.block_assign_number || "N/A"}
+                                    </strong>
+
+                                    <button
+                                        className="field-edit-btn"
+                                        onClick={handleEditClick}
+                                        title="Edit block assignment"  >
+                                        <Pencil size={14} />
+                                    </button>
+                                </div>
+                            )}
                         </div>
 
                         <div className="detail">

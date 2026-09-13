@@ -13,6 +13,16 @@ function EmployeeList() {
     useEffect(() => {
         loadEmployees()
     }, [])
+
+    const handleEmployeeUpdate = (updatedEmployee) => {
+        setEmployees((prev) =>
+            prev.map((employee) =>
+                employee.id === updatedEmployee.id
+                    ? updatedEmployee
+                    : employee
+            )
+        );
+    };
     // Don't remember about this code this is just for motion animation
     const cardAnimations = [
         { x: -80, y: 0 },
@@ -113,6 +123,7 @@ function EmployeeList() {
                                     employee={employee}
                                     onToggleStatus={toggleStatus}
                                     updating={updatingId === employee.id}
+                                    onEmployeeUpdate={handleEmployeeUpdate}
                                 />
                             </motion.div>
                         ))
@@ -167,9 +178,9 @@ function EmployeeList() {
                                     key={employee.id}
                                     employee={employee}
                                     onToggleStatus={toggleStatus}
-                                    updating={
-                                        updatingId === employee.id
+                                    updating={updatingId === employee.id
                                     }
+                                    onEmployeeUpdate={handleEmployeeUpdate}
                                 />
                             </motion.div>
                         ))
