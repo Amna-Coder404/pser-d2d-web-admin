@@ -66,18 +66,18 @@ function SurveyList() {
     }, []);
 
     // This is just for motion
-    // you dont need to remeber this 
+    // you dont need to remember this 
     const cardAnimations = [{ x: -80, y: 0 }, { x: 80, y: 0 }, { x: 0, y: 80 },];
 
     return (
         <div className="survey-grid">
-
+            <span>All Surveys ({employees.length})</span>
             <select
                 value={selectedEmployee}
                 onChange={(e) => setSelectedEmployee(e.target.value)}
             >
                 <option value="all">
-                    All Employees ({surveys.length})
+                    Employees  ({employees.length})
                 </option>
 
                 {employees.map((employee) => (
@@ -129,12 +129,20 @@ function SurveyList() {
                             </div>
 
                             <div className="survey-card-top">
-                                {/* TODO later : ADD a seaction  in form that get image in survey then disply here  */}
-                                <div className="person-avatar">
-                                    {item.person_name
-                                        ?.charAt(0)
-                                        ?.toUpperCase()}
-                                </div>
+
+                                {item?.person_image_url ? (
+                                    <img
+                                        src={item.person_image_url}
+                                        alt={employee?.full_name || "Employee"}
+                                        className="person-avatar"
+                                    />
+                                ) : (
+                                    <div className="person-avatar">
+                                        {item?.full_name?.charAt(0)?.toUpperCase()}
+                                    </div>
+                                )}
+
+
 
                                 <div className="person-info">
                                     <h2>{item.person_name}</h2>
@@ -157,7 +165,38 @@ function SurveyList() {
                                     <span>Address</span>
                                     <strong>{item.address}</strong>
                                 </div>
+
+                                <div>
+                                    <span>CNIC No</span>
+                                    <strong>{item.cnic}</strong>
+                                </div>
+                                <div>
+                                    <span>Education</span>
+                                    <strong>{item.education || "N/A"}</strong>
+                                </div>
+
+                                <div>
+                                    <span>Marital Status</span>
+                                    <strong>{item.marital_status || "N/A"}</strong>
+                                </div>
+
+
                             </div>
+                            {item.has_illness && (
+                                <div className="illness-details">
+
+                                    <span>
+                                        Illness Details
+                                    </span>
+
+                                    <strong>
+                                        {item.illness_details ||
+                                            "No details provided"}
+                                    </strong>
+
+                                </div>
+                            )}
+
 
                             <div className="survey-footer">
                                 <span>
@@ -172,7 +211,11 @@ function SurveyList() {
                                     <b className={item.has_illness ? "yes" : "no"}>
                                         {item.has_illness ? "Yes" : "No"}
                                     </b>
+
+
                                 </span>
+
+
                             </div>
 
                         </div>

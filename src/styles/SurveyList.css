@@ -1,25 +1,30 @@
-/*SURVEY GRID  */
+/*
+   SURVEY GRID */
 
 .survey-grid {
     width: 100%;
+
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+
+    gap: 20px;
 }
 
-/*EMPLOYEE FILTER  */
+
+/*
+   EMPLOYEE FILTER */
 
 .survey-grid>select {
     grid-column: 1 / -1;
 
     width: 100%;
-    max-width: 280px;
-    height: 42px;
+    max-width: 300px;
+    height: 44px;
 
-    padding: 0 12px;
+    padding: 0 14px;
 
     border: 1px solid #292929;
-    border-radius: 8px;
+    border-radius: 10px;
 
     outline: none;
 
@@ -31,65 +36,83 @@
 
     cursor: pointer;
 
-    transition: 0.2s ease;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
 
 .survey-grid>select:hover {
+    background: #141414;
     border-color: #3a3a3a;
 }
 
 .survey-grid>select:focus {
-    border-color: #505050;
+    border-color: #555555;
 }
 
 
 /*
-   SURVEY CARD  */
+   SURVEY CARD */
 
 .survey-card {
+    position: relative;
+
     width: 100%;
     min-width: 0;
 
-    padding: 20px;
+    padding: 0;
+
+    overflow: hidden;
 
     box-sizing: border-box;
 
-    background: #111111;
+    background:
+        linear-gradient(145deg,
+            #151515 0%,
+            #101010 55%,
+            #0d0d0d 100%);
 
-    border: 1px solid #252525;
-    border-radius: 12px;
+    border: 1px solid #292929;
+    border-radius: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.18);
 
     transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease;
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .survey-card:hover {
-    background: #141414;
-    border-color: #353535;
+    transform: translateY(-4px);
 
-    transform: translateY(-2px);
+    border-color: #3a3a3a;
+
+    box-shadow:
+        0 14px 35px rgba(0, 0, 0, 0.28);
 }
 
 
 /*
-   SURVEYED BY  */
+   EMPLOYEE SECTION */
 
 .employee-info {
     display: flex;
     align-items: center;
 
-    gap: 10px;
+    gap: 11px;
 
-    padding-bottom: 16px;
+    padding: 16px 18px;
 
-    border-bottom: 1px solid #222222;
+    background: rgba(255, 255, 255, 0.015);
+
+    border-bottom: 1px solid #242424;
 }
 
 .employee-avatar {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
 
     flex-shrink: 0;
 
@@ -99,13 +122,22 @@
 
     border-radius: 50%;
 
-    background: #1d1d1d;
-    border: 1px solid #303030;
+    background: #202020;
+    border: 1px solid #353535;
 
-    color: #d8d8d8;
+    color: #eeeeee;
 
     font-size: 12px;
     font-weight: 700;
+
+    overflow: hidden;
+}
+
+.employee-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
 }
 
 .employee-details {
@@ -114,23 +146,23 @@
     display: flex;
     flex-direction: column;
 
-    gap: 2px;
+    gap: 3px;
 }
 
 .employee-details span {
-    color: #626262;
+    color: #666666;
 
     font-size: 9px;
-    font-weight: 600;
+    font-weight: 700;
 
     text-transform: uppercase;
-    letter-spacing: 0.7px;
+    letter-spacing: 0.8px;
 }
 
 .employee-details strong {
     overflow: hidden;
 
-    color: #dddddd;
+    color: #e4e4e4;
 
     font-size: 12px;
     font-weight: 600;
@@ -147,20 +179,20 @@
 
 
 /*
-   PERSON  */
+   PERSON HEADER */
 
 .survey-card-top {
     display: flex;
     align-items: center;
 
-    gap: 12px;
+    gap: 14px;
 
-    padding: 18px 0;
+    padding: 20px 18px 17px;
 }
 
 .person-avatar {
-    width: 45px;
-    height: 45px;
+    width: 58px;
+    height: 58px;
 
     flex-shrink: 0;
 
@@ -168,30 +200,52 @@
     align-items: center;
     justify-content: center;
 
-    border-radius: 10px;
+    overflow: hidden;
 
-    background: #1a1a1a;
-    border: 1px solid #303030;
+    border-radius: 14px;
+
+    background:
+        linear-gradient(145deg,
+            #242424,
+            #171717);
+
+    border: 1px solid #363636;
 
     color: #ffffff;
 
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.person-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
 }
 
 .person-info {
     min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
 }
 
 .person-info h2 {
-    margin: 0 0 4px;
+    margin: 0;
 
     overflow: hidden;
 
-    color: #f2f2f2;
+    color: #f3f3f3;
 
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 650;
+    line-height: 1.2;
 
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -200,23 +254,30 @@
 .person-info span {
     color: #777777;
 
-    font-size: 11px;
+    font-size: 10px;
+    line-height: 1.4;
 }
 
 
 /*
-   SURVEY INFO  */
+   SURVEY INFORMATION */
 
 .survey-info {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
 
-    gap: 10px;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
-    padding: 14px 0;
+    gap: 1px;
 
-    border-top: 1px solid #1f1f1f;
-    border-bottom: 1px solid #1f1f1f;
+    margin: 0 18px;
+
+    overflow: hidden;
+
+    background: #292929;
+
+    border: 1px solid #292929;
+    border-radius: 10px;
 }
 
 .survey-info>div {
@@ -225,26 +286,32 @@
     display: flex;
     flex-direction: column;
 
-    gap: 4px;
+    gap: 5px;
+
+    padding: 12px;
+
+    background: #151515;
 }
 
 .survey-info span {
-    color: #626262;
+    color: #666666;
 
-    font-size: 9px;
-    font-weight: 600;
+    font-size: 8px;
+    font-weight: 700;
 
     text-transform: uppercase;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.7px;
 }
 
 .survey-info strong {
     overflow: hidden;
 
-    color: #cfcfcf;
+    color: #d8d8d8;
 
     font-size: 11px;
     font-weight: 600;
+
+    line-height: 1.4;
 
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -252,26 +319,75 @@
 
 
 /*
-   FOOTER  */
+   ILLNESS DETAILS */
+
+.illness-details {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    margin: 14px 18px 0;
+
+    padding: 12px 14px;
+
+    background: rgba(217, 107, 107, 0.06);
+
+    border: 1px solid rgba(217, 107, 107, 0.18);
+
+    border-radius: 10px;
+}
+
+.illness-details span {
+    color: #a66a6a;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+.illness-details strong {
+    color: #d5a0a0;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+/*
+   FOOTER */
 
 .survey-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding-top: 15px;
+    margin-top: 16px;
+
+    padding: 13px 18px;
+
+    background: rgba(255, 255, 255, 0.015);
+
+    border-top: 1px solid #242424;
 }
 
 .survey-footer>span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
     color: #777777;
 
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 500;
 }
 
 .survey-footer b {
-    margin-left: 3px;
-
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
 }
 
@@ -285,7 +401,7 @@
 
 
 /*
-   TABLET  */
+   TABLET */
 
 @media (max-width: 850px) {
 
@@ -300,29 +416,54 @@
 
 
 /*
-   MOBILE  */
+   MOBILE */
 
 @media (max-width: 500px) {
 
+    .survey-grid {
+        gap: 14px;
+    }
+
     .survey-card {
-        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .employee-info {
+        padding: 14px;
+    }
+
+    .survey-card-top {
+        padding: 17px 14px 15px;
+    }
+
+    .person-avatar {
+        width: 52px;
+        height: 52px;
+
+        border-radius: 12px;
+    }
+
+    .person-info h2 {
+        font-size: 15px;
     }
 
     .survey-info {
         grid-template-columns: 1fr 1fr;
-        gap: 14px;
+
+        margin: 0 14px;
     }
 
     .survey-info>div:last-child {
         grid-column: 1 / -1;
     }
 
-    .person-avatar {
-        width: 40px;
-        height: 40px;
+    .illness-details {
+        margin-left: 14px;
+        margin-right: 14px;
     }
 
-    .person-info h2 {
-        font-size: 15px;
+    .survey-footer {
+        padding-left: 14px;
+        padding-right: 14px;
     }
 }
