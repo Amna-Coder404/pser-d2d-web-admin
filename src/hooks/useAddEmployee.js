@@ -115,7 +115,21 @@ function useAddEmployee() {
             );
 
             if (functionError) {
-                throw new Error(functionError.message);
+                let message = functionError.message;
+
+                if (functionError.context) {
+                    try {
+                        const errorData = await functionError.context.json();
+
+                        if (errorData?.error) {
+                            message = errorData.error;
+                        }
+                    } catch (err) {
+                        console.log("Could not read error response:", err);
+                    }
+                }
+
+                throw new Error(message);
             }
 
             if (data?.error) {

@@ -91,7 +91,7 @@ function AdminDashBoard({ user, onLogout }) {
                 centered
                 width={400}
                 closable={false}
-                maskClosable={false}
+
                 keyboard={false}
                 destroyOnHidden
                 onCancel={() => setShowLogoutConfirm(false)}
