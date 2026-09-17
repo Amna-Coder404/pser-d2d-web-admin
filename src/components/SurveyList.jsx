@@ -71,7 +71,7 @@ function SurveyList() {
 
     return (
         <div className="survey-grid">
-            <span>All Surveys ({employees.length})</span>
+            <span>Total Surveys ({surveys.length})</span>
             <select
                 value={selectedEmployee}
                 onChange={(e) => setSelectedEmployee(e.target.value)}

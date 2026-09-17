@@ -38,8 +38,3 @@ VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_key
 ```
 
 
-## 👩‍💻 Developer
-
-**Amna Ashraf**
-
-Web & Mobile Developer
