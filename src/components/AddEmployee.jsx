@@ -4,10 +4,11 @@ import "../styles/AddEmployee.css"
 import { motion } from "motion/react";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import { formatCNIC } from "../utils/cnic";
+
 
 function AddEmployee() {
 
-    const [showPassword, setShowPassword] = useState(false);
 
     const {
         formData,
@@ -40,6 +41,9 @@ function AddEmployee() {
             ease: "easeOut",
         },
     };
+
+
+    const [showPassword, setShowPassword] = useState(false);
 
     return (
 
@@ -121,7 +125,7 @@ function AddEmployee() {
                             <input
                                 type="text"
                                 name="cnic"
-                                value={formData.cnic}
+                                value={formatCNIC(formData.cnic)}
                                 onChange={handleChange}
                                 placeholder="13-digit CNIC or 35202-1234567-1"
                                 maxLength={15} // 15 hs lay ky hs koi user " - "ka use bhi karta hy 
@@ -168,7 +172,6 @@ function AddEmployee() {
                         </motion.div>
 
                     </div>
-
 
                     <motion.div
                         className="form-group"

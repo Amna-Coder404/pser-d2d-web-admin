@@ -6,6 +6,7 @@ import { getPublicUrl } from "../services/survey";
 import { Button } from "antd";
 
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { formatCNIC } from "../utils/cnic";
 
 
 function EmployeeCard({ employee, onToggleStatus, updating, onEmployeeUpdate }) {
@@ -24,7 +25,7 @@ function EmployeeCard({ employee, onToggleStatus, updating, onEmployeeUpdate }) 
 
 
     const handleEditClick = () => {
-        console.log("OPEN")
+
         setEditFormData({
             block_assign_number: employee.block_assign_number || "",
         });
@@ -144,7 +145,8 @@ function EmployeeCard({ employee, onToggleStatus, updating, onEmployeeUpdate }) 
                         <div className="detail">
                             <span>CNIC</span>
                             <strong>
-                                {employee.cnic || "N/A"}
+                                {formatCNIC(employee.cnic) || "N/A"}
+
                             </strong>
                         </div>
 

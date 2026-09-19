@@ -6,6 +6,7 @@ import {
 } from "../services/survey";
 import "../styles/SurveyList.css";
 import { motion } from "motion/react";
+import { formatCNIC } from "../utils/cnic";
 
 
 function SurveyList() {
@@ -168,7 +169,7 @@ function SurveyList() {
 
                                 <div>
                                     <span>CNIC No</span>
-                                    <strong>{item.cnic}</strong>
+                                    <strong> {formatCNIC(item.cnic)}</strong>
                                 </div>
                                 <div>
                                     <span>Education</span>
@@ -190,8 +191,7 @@ function SurveyList() {
                                     </span>
 
                                     <strong>
-                                        {item.illness_details ||
-                                            "No details provided"}
+                                        {item.illness_details || "No details provided"}
                                     </strong>
 
                                 </div>

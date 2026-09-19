@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../lib/supabase";
+import { cleanCNIC, formatCNIC, isValidCNIC } from "../utils/cnic";
+
 
 function useAddEmployee() {
     const [formData, setFormData] = useState({
@@ -29,12 +31,16 @@ function useAddEmployee() {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
+        const newValue =
+            name === "cnic"
+                ? cleanCNIC(value)
+                : value;
+
         setFormData((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: newValue,
         }));
     };
-
 
     const handleEditChange = (e) => {
         const { name, value } = e.target;
@@ -62,17 +68,17 @@ function useAddEmployee() {
         setProfileImage(file);
     };
 
+
+
+
     // CREATE EMPLOYEE
     const handleSubmit = async (e) => {
         e.preventDefault();
         // CNIC validation
-        const cnicRegex = /^(?:\d{13}|\d{5}-\d{7}-\d)$/;
-
-        if (!cnicRegex.test(formData.cnic)) {
-            setError("CNIC must be 13 digits or in format 35202-1234567-1.");
+        if (!isValidCNIC(formData.cnic)) {
+            setError("CNIC must be exactly 13 digits.");
             return;
         }
-
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
