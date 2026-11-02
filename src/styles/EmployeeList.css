@@ -1,239 +1,146 @@
- /* EMPLOYEESECTION */
- .employee-section {
-     width: 100%;
-     padding: 10px 0 5px;
-     color: #f5f5f5;
- }
+/* ===== SECTION ===== */
+.employee-section {
+    width: 100%;
+    padding: 10px 0 5px;
+    color: #f5f5f5;
+}
 
+/* ===== HEADER ===== */
+.employee-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #222;
+}
 
- /* HEADER */
+.employee-header h2 {
+    margin: 0;
+    color: #f5f5f5;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+}
 
- .employee-header {
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     gap: 20px;
-     margin-bottom: 28px;
- }
+.employee-header p {
+    margin: 5px 0 0;
+    color: #777;
+    font-size: 13px;
+    line-height: 20px;
+}
 
- .employee-header h2 {
-     margin: 0;
-     color: #f5f5f5;
-     font-size: 25px;
-     font-weight: 700;
-     line-height: 32px;
-     letter-spacing: -0.4px;
- }
+.employee-total {
+    padding: 6px 12px;
+    border: 1px solid #262626;
+    border-radius: 8px;
+    background: #121212;
+    color: #bbb;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
 
- .employee-header p {
-     margin: 5px 0 0;
-     color: #777;
-     font-size: 13px;
-     line-height: 20px;
- }
+/* ===== GROUP ===== */
+.employee-group {
+    margin-bottom: 36px;
+}
 
- .employee-total {
-     padding: 7px 13px;
-     border: 1px solid #292929;
-     border-radius: 7px;
-     background: #151515;
-     color: #cfcfcf;
-     font-size: 12px;
-     font-weight: 600;
-     white-space: nowrap;
- }
+.employee-group:last-child {
+    margin-bottom: 0;
+}
 
+.group-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
 
- /* GROUP  */
- .employee-group {
-     margin-bottom: 30px;
- }
+.group-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: #dedede;
+    font-size: 15px;
+    font-weight: 600;
+}
 
- .employee-group:last-child {
-     margin-bottom: 0;
- }
+.group-count {
+    min-width: 22px;
+    height: 22px;
+    padding: 0 7px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 999px;
+    background: #1a1a1a;
+    color: #999;
+    font-size: 11px;
+    font-weight: 600;
+}
 
+.green-dot,
+.red-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
 
- /* GROUPHEADER  */
- .group-header {
-     display: flex;
-     align-items: center;
+.green-dot {
+    background: #22c55e;
+}
 
-     gap: 9px;
-     margin-bottom: 12px;
- }
+.red-dot {
+    background: #ef4444;
+}
 
- .group-header h3 {
-     display: flex;
-     align-items: center;
-     gap: 8px;
-     margin: 0;
-     color: #dedede;
-     font-size: 15px;
-     font-weight: 600;
-     line-height: 22px;
- }
+/* ===== CARD GRID ===== */
+.employee-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 20px;
+    align-items: stretch;
+}
 
+.employee-list>div {
+    min-width: 0;
+}
 
- /* STATUSDOTS  */
- .green-dot,
- .red-dot {
-     width: 7px;
-     height: 7px;
-     flex-shrink: 0;
-     border-radius: 50%;
- }
+.empty {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 28px;
+    border: 1px dashed #2a2a2a;
+    border-radius: 12px;
+    color: #666;
+    font-size: 13px;
+    text-align: center;
+}
 
- .green-dot {
-     background: #22c55e;
-     box-shadow: 0 0 7px rgba(34, 197, 94, 0.45);
- }
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+    .employee-header {
+        align-items: flex-start;
+    }
 
- .red-dot {
-     background: #ef4444;
-     box-shadow: 0 0 7px rgba(239, 68, 68, 0.35);
- }
+    .employee-header h2 {
+        font-size: 22px;
+    }
+}
 
+@media (max-width: 550px) {
+    .employee-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
 
- /* GROUPCOUNT */
- .group-count {
-     min-width: 23px;
-     height: 23px;
-     padding: 0 6px;
-     display: inline-flex;
-     align-items: center;
-     justify-content: center;
-
-     box-sizing: border-box;
-     border: 1px solid #292929;
-     border-radius: 20px;
-     background: #171717;
-     color: #999;
-
-     font-size: 11px;
-     font-weight: 700;
- }
-
-
- /* EMPLOYEELIST  */
- .employee-list {
-     display: flex;
-     flex-direction: column;
-
-     gap: 8px;
- }
-
-
- .employee-card:hover {
-     border-color: #383838;
-     background: #141414;
- }
-
- .employee-card.expanded {
-     border-color: #404040;
- }
-
-
- /* EMPLOYEEROW  */
- .employee-row {
-     min-height: 66px;
-     padding: 10px 14px;
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     gap: 15px;
-     box-sizing: border-box;
- }
-
-
- /* EMPLOYEESUMMARY  */
- .employee-summary {
-     min-width: 0;
-     display: flex;
-     align-items: center;
-     gap: 12px;
-     cursor: pointer;
- }
-
-
- /* EMPLOYEEAVATAR */
- .employee-avatar {
-     width: 42px;
-     height: 42px;
-
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     flex-shrink: 0;
-     border: 1px solid #303030;
-     border-radius: 50%;
-     background: #1b1b1b;
-     color: #e5e5e5;
-     font-size: 15px;
-     font-weight: 700;
- }
-
-
-
-
-
- /* RESPONSIVE */
- @media (max-width: 700px) {
-
-     .employee-header {
-         align-items: flex-start;
-     }
-
-     .employee-header h2 {
-         font-size: 22px;
-     }
-
-     .employee-details {
-         grid-template-columns: 1fr 1fr;
-     }
- }
-
-
- @media (max-width: 550px) {
-
-     .employee-header {
-         flex-direction: column;
-         gap: 12px;
-     }
-
-     .employee-actions {
-         gap: 5px;
-     }
-
-     .activate-btn,
-     .deactivate-btn {
-         padding: 6px 8px;
-         font-size: 10px;
-     }
-
-     .expand-btn {
-         width: 28px;
-         height: 28px;
-     }
- }
-
- @media (max-width: 430px) {
-
-     .employee-details {
-         grid-template-columns: 1fr;
-         gap: 12px;
-     }
-
-     .employee-name h3 {
-         max-width: 120px;
-     }
-
-     .employee-actions {
-         flex-shrink: 0;
-     }
-
-     .activate-btn,
-     .deactivate-btn {
-         padding: 6px 7px;
-     }
- }
+    .employee-list {
+        grid-template-columns: 1fr;
+    }
+}
