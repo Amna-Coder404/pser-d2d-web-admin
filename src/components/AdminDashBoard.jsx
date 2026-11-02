@@ -2,6 +2,7 @@ import AddEmployee from "./AddEmployee";
 import EmployeeList from "./EmployeeList";
 import SurveyList from "./SurveyList";
 import Navbar from "./Navbar";
+import Hero from "./Hero";
 import "../styles/AdminDashBoard.css";
 import { Modal } from "antd";
 import { useState } from "react";
@@ -16,21 +17,21 @@ function AdminDashBoard({ user, onLogout }) {
 
     return (
         <div className="dashboard">
-            {/* Navbar */}
             <Navbar
                 user={user}
                 onLogout={() => setShowLogoutConfirm(true)}
             />
 
+            {/* Hero: first page */}
+            <Hero user={user} />
+
             {/* Main */}
             <main className="dashboard-content">
-                {/* Employees */}
-                <section className="dashboard-section">
+                <section id="employees" className="dashboard-section">
                     <EmployeeList />
                 </section>
 
-                {/* Add Employee */}
-                <section className="dashboard-section">
+                <section id="add-employee" className="dashboard-section">
                     <div className="section-heading">
                         <h2>Add Employee</h2>
                         <p>Create a new employee account.</p>
@@ -39,8 +40,7 @@ function AdminDashBoard({ user, onLogout }) {
                     <AddEmployee />
                 </section>
 
-                {/* Surveys */}
-                <section className="dashboard-section">
+                <section id="surveys" className="dashboard-section">
                     <div className="section-heading">
                         <h2>Surveys</h2>
                         <p>View and manage submitted surveys.</p>
