@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getAllEmployees, toggleEmployeeStatus } from '../services/survey';
 import "../styles/EmployeeList.css";
-import EmployeeCard from './EmployeeCard';
+import EmployeeCard from '../components/EmployeeCard';
 
 import { motion } from "motion/react";
 

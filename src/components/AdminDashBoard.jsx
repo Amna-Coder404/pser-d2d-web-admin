@@ -1,6 +1,6 @@
-import AddEmployee from "./AddEmployee";
-import EmployeeList from "./EmployeeList";
-import SurveyList from "./SurveyList";
+import AddEmployee from "../pages/AddEmployee";
+import EmployeeList from "../pages/EmployeeList";
+import SurveyList from "../pages/SurveyList";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import "../styles/AdminDashBoard.css";
